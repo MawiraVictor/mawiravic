@@ -1,28 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js" data-theme="dark">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Victor Mawira — Cybersecurity Student and Aspiring Penetration Tester</title>
-  <meta name="description" content="Computer Networks and Cybersecurity student at Strathmore University. eJPT certified. CCNA. Building offensive security skills in Kenya.">
-  <link rel="canonical" href="https://mawiravictor.github.io/mawiravic.io/">
-  <meta name="theme-color" content="#0B0F14">
+  <title>Victor Mawira | Cybersecurity student and aspiring penetration tester</title>
+  <meta name="description" content="Computer Networks and Cybersecurity student at Strathmore University in Nairobi. eJPT certified, CCNA. I build networks, then break them. Open to SOC and pentest internships.">
+  <link rel="canonical" href="https://mawiravic.pages.dev/">
+  <meta name="theme-color" content="#F4F6FB" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121433" media="(prefers-color-scheme: dark)">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Victor Mawira — Cybersecurity Student and Aspiring Penetration Tester">
-  <meta property="og:description" content="Computer Networks and Cybersecurity student at Strathmore University. eJPT certified. CCNA. Building offensive security skills in Kenya.">
-  <!-- TODO: add a 1200x630 image at assets/og-image.png (see README) -->
-  <meta property="og:image" content="https://mawiravictor.github.io/mawiravic.io/assets/og-image.png">
-  <meta property="og:url" content="https://mawiravictor.github.io/mawiravic.io/">
+  <meta property="og:title" content="Victor Mawira | Cybersecurity student and aspiring penetration tester">
+  <meta property="og:description" content="eJPT certified, CCNA. I build networks, then break them. Open to SOC and pentest internships.">
+  <meta property="og:url" content="https://mawiravic.pages.dev/">
+  <meta name="twitter:card" content="summary">
 
-  <!-- Twitter card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Victor Mawira — Cybersecurity Student and Aspiring Penetration Tester">
-  <meta name="twitter:description" content="Computer Networks and Cybersecurity student at Strathmore University. eJPT certified. CCNA. Building offensive security skills in Kenya.">
-  <meta name="twitter:image" content="https://mawiravictor.github.io/mawiravic.io/assets/og-image.png">
-
-  <!-- Set theme and JS flag before first paint (avoids flash) -->
   <script>
     (function () {
       var d = document.documentElement;
@@ -36,7 +28,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="styles.css">
 
   <script type="application/ld+json">
@@ -46,15 +38,12 @@
     "name": "Victor Mawira",
     "alternateName": "Mawira Victor",
     "jobTitle": "Cybersecurity Student and Aspiring Penetration Tester",
-    "url": "https://mawiravictor.github.io/mawiravic.io/",
+    "url": "https://mawiravic.pages.dev/",
     "email": "mailto:victor.mawira@strathmore.edu",
     "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "Strathmore University" },
     "knowsAbout": ["Penetration Testing", "Network Security", "Ethical Hacking", "Cryptography", "Linux", "Networking", "Nmap", "Metasploit", "Burp Suite"],
-    "sameAs": [
-      "https://github.com/MawiraVictor",
-      "https://www.linkedin.com/in/victor-mawira"
-    ]
+    "sameAs": ["https://github.com/MawiraVictor", "https://www.linkedin.com/in/victor-mawira"]
   }
   </script>
 </head>
@@ -62,406 +51,321 @@
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home" aria-label="Victor Mawira — home">
-        <span class="brand-prompt" aria-hidden="true">&gt;_</span> mawira<span class="accent">.victor</span>
-      </a>
-      <nav class="primary-nav" aria-label="Primary">
+    <div class="wrap header-inner">
+      <a class="brand" href="#home">Victor Mawira</a>
+      <nav class="nav" aria-label="Primary">
         <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#work">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#certs">Certifications</a></li>
+          <li><a href="#journey">Experience</a></li>
+          <li><a class="nav-cta" href="#contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle light and dark theme" aria-pressed="false">
-        <span class="theme-icon" aria-hidden="true"></span>
-        <span class="theme-label">Theme</span>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path class="sun" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-5v3m0 14v3M4.2 4.2l2.1 2.1m11.4 11.4 2.1 2.1M2 12h3m14 0h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><path class="moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
       </button>
     </div>
   </header>
 
   <main id="main">
 
-    <!-- HERO -->
+    <!-- HERO: the lab you can attack -->
     <section id="home" class="hero">
-      <div class="container hero-inner">
-        <!-- Replace this placeholder with a real photo: <img src="assets/profile.jpg" alt="Portrait of Victor Mawira" width="160" height="160"> -->
-        <div class="avatar" role="img" aria-label="Profile photo placeholder with initials VM">VM</div>
-        <div class="hero-text">
-          <p class="eyebrow mono">Nairobi, Kenya</p>
-          <h1>Mawira Victor</h1>
-          <p class="tagline">Aspiring Penetration Tester | eJPT Certified | CCNA | Network Security and Ethical Hacking | Strathmore University</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-secondary" href="resume.pdf" download>Download Resume</a>
-            <a class="btn btn-secondary" href="#contact">Contact</a>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="hello">Hi, I'm Victor. Cybersecurity student in Nairobi.</p>
+          <h1>I build networks, then break&nbsp;them.</h1>
+          <p class="intro">I study Computer Networks and Cybersecurity at Strathmore University, hold the eJPT and CCNA, and spend my evenings in a home lab finding the way in before someone else does.</p>
+          <div class="actions">
+            <a class="btn btn-solid" href="#work">See my projects</a>
+            <a class="btn btn-line" href="#contact">Get in touch</a>
           </div>
+          <p class="availability"><span class="pulse" aria-hidden="true"></span>Open to SOC and penetration testing internships, in Kenya or remote</p>
         </div>
+
+        <figure class="lab" aria-labelledby="lab-title">
+          <div class="lab-bar">
+            <p id="lab-title" class="lab-title">Try it: a small lab network</p>
+            <button class="lab-run" id="lab-run" type="button">Run the attack</button>
+          </div>
+          <svg class="topology" viewBox="0 0 600 360" role="img" aria-describedby="lab-step">
+            <g class="links">
+              <path id="l-kali-fw"  d="M80 180 L215 180"/>
+              <path id="l-fw-web"   d="M215 180 L355 85"/>
+              <path id="l-fw-mail"  d="M215 180 L355 275"/>
+              <path id="l-web-ldap" d="M355 85 L515 115"/>
+              <path id="l-web-db"   d="M355 85 L515 255"/>
+              <path id="l-ldap-db"  d="M515 115 L515 255"/>
+            </g>
+            <g class="packets" aria-hidden="true">
+              <circle r="4"><animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#l-kali-fw"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="3.4s" begin="1s" repeatCount="indefinite"><mpath href="#l-fw-mail"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="3s" begin=".4s" repeatCount="indefinite"><mpath href="#l-fw-web"/></animateMotion></circle>
+              <circle r="4"><animateMotion dur="3.8s" begin="1.6s" repeatCount="indefinite"><mpath href="#l-ldap-db"/></animateMotion></circle>
+            </g>
+            <g class="node attacker" data-node="kali" transform="translate(80 180)">
+              <circle r="30"/><text class="n-name" y="5">kali</text><text class="n-ip" y="50">10.10.14.7</text>
+            </g>
+            <g class="node" data-node="fw" transform="translate(215 180)">
+              <rect x="-30" y="-24" width="60" height="48" rx="12"/><text class="n-name" y="5">router</text><text class="n-ip" y="44">fw + NAT</text>
+            </g>
+            <g class="node" data-node="web" transform="translate(355 85)">
+              <circle r="30"/><text class="n-name" y="5">web</text><text class="n-ip" y="-40">172.16.5.10</text>
+            </g>
+            <g class="node" data-node="mail" transform="translate(355 275)">
+              <circle r="30"/><text class="n-name" y="5">mail</text><text class="n-ip" y="50">172.16.5.25</text>
+            </g>
+            <g class="node internal" data-node="ldap" transform="translate(515 115)">
+              <circle r="30"/><text class="n-name" y="5">ldap</text><text class="n-ip" y="-40">10.0.2.5</text>
+            </g>
+            <g class="node internal" data-node="db" transform="translate(515 255)">
+              <circle r="30"/><text class="n-name" y="5">db</text><text class="n-ip" y="50">10.0.2.20</text>
+            </g>
+          </svg>
+          <figcaption class="lab-step" id="lab-step" aria-live="polite">
+            <code class="cmd" id="lab-cmd">$ ping -c1 172.16.5.10</code>
+            <span id="lab-text">Six hosts, one way in. Press <b>Run the attack</b> to walk the path I practised for the eJPT.</span>
+          </figcaption>
+          <ol class="lab-progress" aria-hidden="true">
+            <li>Recon</li><li>Exploit</li><li>Pivot</li><li>Escalate</li>
+          </ol>
+        </figure>
+      </div>
+    </section>
+
+    <!-- eJPT result -->
+    <section class="score" aria-labelledby="score-title">
+      <div class="wrap score-grid">
+        <div class="score-head">
+          <p class="score-big"><span>82</span>%</p>
+          <h2 id="score-title">eJPT, passed May 2026</h2>
+          <p class="muted">INE Junior Penetration Tester. Credential 181881200, valid to May 2029.</p>
+        </div>
+        <ul class="bars">
+          <li style="--v:100"><span class="bar-label">Web app pentesting</span><span class="bar-val">100%</span><span class="bar" aria-hidden="true"></span></li>
+          <li style="--v:90"><span class="bar-label">Host and network pentesting</span><span class="bar-val">90%</span><span class="bar" aria-hidden="true"></span></li>
+          <li style="--v:80"><span class="bar-label">Host and network auditing</span><span class="bar-val">80%</span><span class="bar" aria-hidden="true"></span></li>
+          <li style="--v:72"><span class="bar-label">Assessment methodologies</span><span class="bar-val">72%</span><span class="bar" aria-hidden="true"></span></li>
+        </ul>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> About</h2>
-        <p class="lead">I am a Computer Networks and Cybersecurity student at Strathmore University building practical offensive security skills. In 2026 I earned the eJPT (Junior Penetration Tester) certification, validating hands-on proficiency in reconnaissance, exploitation, privilege escalation, and network pivoting using Nmap, Metasploit, Burp Suite, and Linux.</p>
-        <p>I have completed cybersecurity job simulations with Deloitte, EY, Mastercard, and AIG, and hold Cisco Networking Academy credentials in Ethical Hacking, Network Defense, Cyber Threat Management, and CCNA Switching and Routing.</p>
-        <p>I am open to entry-level cybersecurity, SOC, or penetration testing internships in Kenya and remotely.</p>
-      </div>
-    </section>
-
-    <!-- TECH STACK -->
-    <section id="tech-stack" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Tech Stack</h2>
-        <p class="muted">Select a technology to filter the projects below by matching tag.</p>
-        <div class="stack-grid">
-          <div class="stack-group">
-            <h3>Languages</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="python">Python</span></li>
-              <li><span class="chip" data-tag="c">C</span></li>
-              <li><span class="chip" data-tag="php">PHP</span></li>
-              <li><span class="chip" data-tag="bash">Bash</span></li>
-              <li><span class="chip" data-tag="javascript">JavaScript</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Systems and Infrastructure</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="linux">Linux</span></li>
-              <li><span class="chip" data-tag="ubuntu">Ubuntu</span></li>
-              <li><span class="chip" data-tag="debian">Debian</span></li>
-              <li><span class="chip" data-tag="docker">Docker</span></li>
-              <li><span class="chip" data-tag="kubernetes">Kubernetes</span></li>
-              <li><span class="chip" data-tag="aws">AWS</span></li>
-              <li><span class="chip" data-tag="nginx">Nginx</span></li>
-              <li><span class="chip" data-tag="apache">Apache</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Monitoring</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="nagios">Nagios</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Databases</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="mysql">MySQL</span></li>
-              <li><span class="chip" data-tag="mariadb">MariaDB</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Version Control</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="git">Git</span></li>
-              <li><span class="chip" data-tag="github">GitHub</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Static Site Generation</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="hugo">Hugo</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Networking and Security Tools</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="nmap">Nmap</span></li>
-              <li><span class="chip" data-tag="metasploit">Metasploit</span></li>
-              <li><span class="chip" data-tag="burp suite">Burp Suite</span></li>
-              <li><span class="chip" data-tag="netcat">Netcat</span></li>
-              <li><span class="chip" data-tag="wireshark">Wireshark</span></li>
-            </ul>
-          </div>
-          <div class="stack-group">
-            <h3>Cryptography</h3>
-            <ul class="chips">
-              <li><span class="chip" data-tag="bcrypt">bcrypt</span></li>
-              <li><span class="chip" data-tag="pycryptodome">pycryptodome</span></li>
-              <li><span class="chip" data-tag="rsa">RSA</span></li>
-              <li><span class="chip" data-tag="aes-256">AES-256</span></li>
-            </ul>
-          </div>
+    <section id="about" class="block">
+      <div class="wrap about-grid">
+        <h2 class="block-title">A little about me</h2>
+        <div class="prose">
+          <p class="lead">I like understanding a system well enough to set it up properly, and then well enough to see exactly how it fails.</p>
+          <p>Most of my projects start as infrastructure: LDAP single sign-on, mail servers, replicated databases, a full DNS tree. Then I turn around and attack them. The eJPT confirmed the offensive side, with recon, exploitation, privilege escalation and pivoting using Nmap, Metasploit, Burp Suite and plenty of Linux.</p>
+          <p>I've also completed cybersecurity job simulations with Deloitte, EY, Mastercard and AIG, and I teach coding and online safety to primary school pupils as a volunteer.</p>
         </div>
+        <dl class="facts">
+          <div><dt>Studying</dt><dd>BSc Computer Networks and Cybersecurity, Strathmore University</dd></div>
+          <div><dt>Based in</dt><dd>Nairobi, Kenya</dd></div>
+          <div><dt>Looking for</dt><dd>SOC analyst or penetration testing internships</dd></div>
+        </dl>
       </div>
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Featured Projects</h2>
-
-        <div class="filters" role="group" aria-label="Filter projects by category" data-filter-target="projects">
-          <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
-          <button type="button" class="filter-btn" data-filter="ml" aria-pressed="false">Machine Learning</button>
-          <button type="button" class="filter-btn" data-filter="networking" aria-pressed="false">Networking</button>
-          <button type="button" class="filter-btn" data-filter="security" aria-pressed="false">Security</button>
-          <button type="button" class="filter-btn" data-filter="systems" aria-pressed="false">Systems</button>
-          <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+    <section id="work" class="block">
+      <div class="wrap">
+        <div class="block-head">
+          <h2 class="block-title">Things I've built (and broken)</h2>
+          <div class="filters" role="group" aria-label="Filter projects by category" id="project-filters">
+            <button type="button" class="chip-btn is-active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="chip-btn" data-filter="security" aria-pressed="false">Security</button>
+            <button type="button" class="chip-btn" data-filter="networking" aria-pressed="false">Networking</button>
+            <button type="button" class="chip-btn" data-filter="systems" aria-pressed="false">Systems</button>
+            <button type="button" class="chip-btn" data-filter="ml" aria-pressed="false">Machine learning</button>
+            <button type="button" class="chip-btn" data-filter="web" aria-pressed="false">Web</button>
+          </div>
         </div>
-        <p class="tag-status" id="tag-status" hidden>
-          Filtering by tag: <strong class="mono" id="tag-status-name"></strong>
-          <button type="button" class="link-btn" id="tag-clear">Clear tag</button>
-        </p>
+        <p class="tag-status" id="tag-status" hidden>Showing projects that use <strong id="tag-status-name"></strong>. <button type="button" class="link-btn" id="tag-clear">Show all</button></p>
         <p class="sr-only" id="projects-live" aria-live="polite"></p>
 
-        <ul class="card-grid" id="project-list">
-
-          <li class="card project" data-cat="security systems" data-tags="python sql bcrypt pycryptodome rsa aes-256 tkinter">
-            <h3>SecureChatApp</h3>
-            <p>A real-time messaging platform that implements end-to-end encryption using standard cryptographic protocols. Built with Python and Tkinter, providing secure communication channels between users.</p>
-            <p class="note">This is a fork of kakeetopius/SecureChatApp. End-of-semester project for Cryptography 2.</p>
-            <ul class="tags">
-              <li data-tag="python">Python</li><li data-tag="sql">SQL</li><li data-tag="bcrypt">bcrypt</li><li data-tag="pycryptodome">pycryptodome</li><li data-tag="rsa">RSA</li><li data-tag="aes-256">AES-256</li><li data-tag="tkinter">Tkinter</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/SecureChatApp" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (SecureChatApp)</span></a>
+        <ul class="projects" id="project-list">
+          <li class="project feature tone-pink" data-cat="security ml networking" data-tags="python scikit-learn wireless">
+            <h3><a href="https://github.com/MawiraVictor/WIDS-ML-Deauth-Detector" rel="noopener">WIDS deauth detector</a></h3>
+            <p>A wireless intrusion detection and prevention system. A Random Forest model trained on the AWID3 dataset spots 802.11 deauthentication floods in real time and blocks the attacker's MAC address.</p>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="scikit-learn">scikit-learn</li><li data-tag="wireless">802.11</li></ul>
+          </li>
+          <li class="project feature tone-blue" data-cat="security web" data-tags="python sqlite github-actions">
+            <h3><a href="https://github.com/MawiraVictor/security-news-scraper-project" rel="noopener">secnews</a></h3>
+            <p>A command-line tool that pulls eight security news feeds, tags stories by topic, extracts CVE IDs, removes duplicates and builds a daily digest. Hardened against SSRF, XSS and CSV injection, with tests running in CI.</p>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="sqlite">SQLite</li><li data-tag="github-actions">GitHub Actions</li></ul>
+          </li>
+          <li class="project feature tone-yellow" data-cat="security systems networking" data-tags="openldap debian nss pam linux">
+            <h3><a href="https://github.com/MawiraVictor/Centralized-LDAP-Authentication" rel="noopener">Centralized LDAP authentication</a></h3>
+            <p>Single sign-on for Linux clients using OpenLDAP on Debian, wired in through NSS and PAM, with users managed centrally in phpLDAPadmin.</p>
+            <ul class="tags"><li data-tag="openldap">OpenLDAP</li><li data-tag="debian">Debian</li><li data-tag="pam">PAM</li></ul>
           </li>
 
-          <li class="card project" data-cat="ml security" data-tags="python pandas scikit-learn matplotlib jupyter">
-            <h3>Credit Card Fraud Detection with Decision Trees and SVM</h3>
-            <p>A machine learning project that builds and compares a Decision Tree classifier and a Linear SVM to detect fraudulent credit card transactions on a highly imbalanced dataset. The SVM achieved a higher ROC-AUC (0.986 vs 0.939); the Decision Tree improved after feature selection to six features (V3, V10, V12, V14, V16, V17).</p>
-            <ul class="tags">
-              <li data-tag="python">Python</li><li data-tag="pandas">pandas</li><li data-tag="scikit-learn">scikit-learn</li><li data-tag="matplotlib">matplotlib</li><li data-tag="jupyter">Jupyter</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Credit-Card-Fraud-Detection-with-Decision-Trees-and-SVM" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Credit Card Fraud Detection)</span></a>
+          <li class="project" data-cat="security systems" data-tags="python sql bcrypt pycryptodome rsa aes-256">
+            <h3><a href="https://github.com/MawiraVictor/SecureChatApp" rel="noopener">SecureChatApp</a></h3>
+            <p>End-to-end encrypted messaging in Python and Tkinter using RSA and AES-256. A team project for Cryptography 2.</p>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="rsa">RSA</li><li data-tag="aes-256">AES-256</li><li data-tag="bcrypt">bcrypt</li></ul>
           </li>
-
-          <li class="card project" data-cat="security systems networking" data-tags="openldap debian nss pam phpldapadmin">
-            <h3>Centralized LDAP Authentication</h3>
-            <p>Centralized Identity and Access Management using OpenLDAP on Debian. Integrates NSS and PAM for seamless Linux client authentication and centralizes user management via phpLDAPadmin.</p>
-            <ul class="tags">
-              <li data-tag="openldap">OpenLDAP</li><li data-tag="debian">Debian</li><li data-tag="nss">NSS</li><li data-tag="pam">PAM</li><li data-tag="phpldapadmin">phpLDAPadmin</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Centralized-LDAP-Authentication" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Centralized LDAP Authentication)</span></a>
+          <li class="project" data-cat="web security" data-tags="python fastapi sqlite">
+            <h3><a href="https://github.com/MawiraVictor/USSD-Based-Mobile-wallet-Simulation" rel="noopener">USSD mobile wallet</a></h3>
+            <p>A simulated *123# mobile money service in FastAPI, with hashed PINs, lockout after failed attempts and atomic transfers.</p>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="fastapi">FastAPI</li><li data-tag="sqlite">SQLite</li></ul>
           </li>
-
-          <li class="card project" data-cat="systems" data-tags="mariadb shell linux">
-            <h3>MariaDB Replication Cluster</h3>
-            <p>A multi-node MariaDB replication cluster demonstrating high availability and data redundancy.</p>
-            <ul class="tags">
-              <li data-tag="mariadb">MariaDB</li><li data-tag="shell">Shell</li><li data-tag="linux">Linux</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/MariaDB-Replication-Cluster" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (MariaDB Replication Cluster)</span></a>
+          <li class="project" data-cat="systems" data-tags="mariadb haproxy linux">
+            <h3><a href="https://github.com/MawiraVictor/MariaDB-Replication-Cluster" rel="noopener">MariaDB replication cluster</a></h3>
+            <p>A primary and two replicas with HAProxy balancing reads, built for high availability and redundancy.</p>
+            <ul class="tags"><li data-tag="mariadb">MariaDB</li><li data-tag="haproxy">HAProxy</li><li data-tag="linux">Linux</li></ul>
           </li>
-
-          <li class="card project" data-cat="networking systems" data-tags="linux dns bind">
-            <h3>Complete DNS Tree</h3>
-            <p>Full DNS configuration tree with computers on different subdomains resolving queries recursively up the hierarchy.</p>
-            <ul class="tags">
-              <li data-tag="linux">Linux</li><li data-tag="dns">DNS</li><li data-tag="bind">BIND</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Complete-DNS-tree" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Complete DNS Tree)</span></a>
+          <li class="project" data-cat="systems web" data-tags="exim dovecot roundcube php linux">
+            <h3><a href="https://github.com/MawiraVictor/Enterprise-Mail-Server-Suite" rel="noopener">Enterprise mail server</a></h3>
+            <p>Exim, Dovecot and Roundcube working together, plus automation triggered by incoming email.</p>
+            <ul class="tags"><li data-tag="exim">Exim</li><li data-tag="dovecot">Dovecot</li><li data-tag="php">PHP</li></ul>
           </li>
-
-          <li class="card project" data-cat="systems web" data-tags="exim dovecot roundcube php">
-            <h3>Enterprise Mail Server Suite</h3>
-            <p>Complete mail server setup with Exim, Dovecot, Roundcube, and email-based automation.</p>
-            <ul class="tags">
-              <li data-tag="exim">Exim</li><li data-tag="dovecot">Dovecot</li><li data-tag="roundcube">Roundcube</li><li data-tag="php">PHP</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Enterprise-Mail-Server-Suite" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Enterprise Mail Server Suite)</span></a>
+          <li class="project" data-cat="networking systems" data-tags="linux dns bind">
+            <h3><a href="https://github.com/MawiraVictor/Complete-DNS-tree" rel="noopener">Complete DNS tree</a></h3>
+            <p>A full DNS hierarchy where hosts on different subdomains resolve queries recursively up the tree.</p>
+            <ul class="tags"><li data-tag="dns">DNS</li><li data-tag="bind">BIND</li><li data-tag="linux">Linux</li></ul>
           </li>
-
-          <li class="card project" data-cat="systems networking" data-tags="nfs samba debian">
-            <h3>Linux Infrastructure File Services</h3>
-            <p>NFS and Samba file sharing configuration on Debian.</p>
-            <ul class="tags">
-              <li data-tag="nfs">NFS</li><li data-tag="samba">Samba</li><li data-tag="debian">Debian</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Linux-Infrastructure-File-Services" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Linux Infrastructure File Services)</span></a>
+          <li class="project" data-cat="systems networking" data-tags="nfs samba debian linux">
+            <h3><a href="https://github.com/MawiraVictor/Linux-Infrastructure-File-Services" rel="noopener">Linux file services</a></h3>
+            <p>NFS and Samba file sharing on Debian for mixed Linux and Windows clients.</p>
+            <ul class="tags"><li data-tag="nfs">NFS</li><li data-tag="samba">Samba</li><li data-tag="debian">Debian</li></ul>
           </li>
-
-          <li class="card project" data-cat="ml" data-tags="python scikit-learn jupyter">
-            <h3>Multi-class Classification</h3>
-            <p>Educational repository implementing multi-class classification with logistic regression using One-vs-All and One-vs-One strategies on the Obesity Risk dataset.</p>
-            <ul class="tags">
-              <li data-tag="python">Python</li><li data-tag="scikit-learn">scikit-learn</li><li data-tag="jupyter">Jupyter</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Multi-class-Classification" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Multi-class Classification)</span></a>
+          <li class="project" data-cat="ml security" data-tags="python scikit-learn pandas">
+            <h3><a href="https://github.com/MawiraVictor/Credit-Card-Fraud-Detection-with-Decision-Trees-and-SVM" rel="noopener">Credit card fraud detection</a></h3>
+            <p>Decision Tree versus Linear SVM on a heavily imbalanced dataset. The SVM reached a ROC-AUC of 0.986.</p>
+            <ul class="tags"><li data-tag="python">Python</li><li data-tag="scikit-learn">scikit-learn</li><li data-tag="pandas">pandas</li></ul>
           </li>
-
-          <li class="card project" data-cat="systems" data-tags="c">
-            <h3>Text Editor in C</h3>
-            <p>A text editor written in C to practice core C concepts such as memory management, file I/O, and terminal handling.</p>
-            <ul class="tags">
-              <li data-tag="c">C</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Text-editor" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Text Editor in C)</span></a>
-          </li>
-
-          <li class="card project" data-cat="systems" data-tags="c">
-            <h3>Banking Management System</h3>
-            <p>A virtual banking management system to view and manage transactions, verify account details, and browse bank information.</p>
-            <ul class="tags">
-              <li data-tag="c">C</li>
-            </ul>
-            <a class="card-link" href="https://github.com/MawiraVictor/Banking-management-system" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span><span class="sr-only"> (Banking Management System)</span></a>
+          <li class="project" data-cat="systems" data-tags="c">
+            <h3><a href="https://github.com/MawiraVictor/Text-editor" rel="noopener">Text editor in C</a></h3>
+            <p>A terminal text editor written to get comfortable with memory management, file I/O and raw terminal handling.</p>
+            <ul class="tags"><li data-tag="c">C</li></ul>
           </li>
         </ul>
-        <p class="empty" id="projects-empty" hidden>No projects match this filter yet.</p>
+        <p class="empty" id="projects-empty" hidden>Nothing here matches that filter. <button type="button" class="link-btn" data-reset>Show all projects</button></p>
+        <p class="more"><a href="https://github.com/MawiraVictor?tab=repositories" rel="noopener">Browse every repository on GitHub</a></p>
+      </div>
+    </section>
 
-        <p class="more"><a href="https://github.com/MawiraVictor?tab=repositories" rel="noopener">Browse all repositories on GitHub <span aria-hidden="true">&rarr;</span></a></p>
+    <!-- SKILLS -->
+    <section id="skills" class="block block-tint">
+      <div class="wrap">
+        <h2 class="block-title">My toolbox</h2>
+        <p class="muted">Pick a tool to see the projects where I used it.</p>
+        <div class="skill-groups">
+          <div class="skill-group">
+            <h3>Offensive security</h3>
+            <ul class="tags big">
+              <li data-tag="nmap">Nmap</li><li data-tag="metasploit">Metasploit</li><li data-tag="burp">Burp Suite</li><li data-tag="wireshark">Wireshark</li><li data-tag="netcat">Netcat</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Systems and networks</h3>
+            <ul class="tags big">
+              <li data-tag="linux">Linux</li><li data-tag="debian">Debian</li><li data-tag="openldap">OpenLDAP</li><li data-tag="dns">DNS / BIND</li><li data-tag="mariadb">MariaDB</li><li data-tag="docker">Docker</li><li data-tag="aws">AWS</li><li data-tag="cisco">Cisco IOS</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Code</h3>
+            <ul class="tags big">
+              <li data-tag="python">Python</li><li data-tag="bash">Bash</li><li data-tag="c">C</li><li data-tag="php">PHP</li><li data-tag="sql">SQL</li><li data-tag="javascript">JavaScript</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Cryptography and ML</h3>
+            <ul class="tags big">
+              <li data-tag="rsa">RSA</li><li data-tag="aes-256">AES-256</li><li data-tag="bcrypt">bcrypt</li><li data-tag="scikit-learn">scikit-learn</li><li data-tag="pandas">pandas</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- CERTIFICATIONS -->
-    <section id="certifications" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Certifications</h2>
-
-        <div class="filters" role="group" aria-label="Filter certifications by category" data-filter-target="certs">
-          <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
-          <button type="button" class="filter-btn" data-filter="security" aria-pressed="false">Security</button>
-          <button type="button" class="filter-btn" data-filter="networking" aria-pressed="false">Networking</button>
-          <button type="button" class="filter-btn" data-filter="professional" aria-pressed="false">Professional</button>
+    <section id="certs" class="block">
+      <div class="wrap">
+        <h2 class="block-title">Certifications</h2>
+        <div class="cert-cols">
+          <div>
+            <h3>Security</h3>
+            <ul class="cert-list">
+              <li><strong>eJPT, Junior Penetration Tester</strong><span>INE, May 2026</span></li>
+              <li><strong>Ethical Hacker</strong><span>Cisco Networking Academy, Mar 2026</span></li>
+              <li><strong>Cyber Threat Management</strong><span>Cisco Networking Academy, Feb 2026</span></li>
+              <li><strong>Network Defense</strong><span>Cisco Networking Academy, Feb 2026</span></li>
+              <li><strong>Endpoint Security</strong><span>Cisco Networking Academy, Jan 2026</span></li>
+              <li><strong>Introduction to Cybersecurity</strong><span>Cisco Networking Academy, Jan 2026</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Networking</h3>
+            <ul class="cert-list">
+              <li><strong>CCNA: Switching, Routing and Wireless Essentials</strong><span>Cisco Networking Academy, May 2026</span></li>
+              <li><strong>Networking Devices and Initial Configuration</strong><span>Cisco Networking Academy, Jan 2026</span></li>
+              <li><strong>Networking Basics</strong><span>Cisco Networking Academy, Jan 2026</span></li>
+              <li><strong>CCNA: Introduction to Networks</strong><span>Cisco Networking Academy, Sep 2025</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Job simulations</h3>
+            <ul class="cert-list">
+              <li><strong>Shields Up cybersecurity</strong><span>AIG, Sep 2026</span></li>
+              <li><strong>Cybersecurity</strong><span>Mastercard, Sep 2026</span></li>
+              <li><strong>Cyber</strong><span>Deloitte, Sep 2026</span></li>
+              <li><strong>Technology risk</strong><span>EY, Sep 2026</span></li>
+              <li><strong>McKinsey Forward Program</strong><span>McKinsey &amp; Company, Jun 2026</span></li>
+            </ul>
+          </div>
         </div>
-
-        <div class="cert-group" data-cat="security">
-          <h3>Security and Penetration Testing</h3>
-          <ul class="cert-list">
-            <li class="card cert cert-featured">
-              <h4>eJPT (Junior Penetration Tester)</h4>
-              <p class="meta mono">INE &middot; May 2026 (expires May 2029) &middot; Credential ID 181881200</p>
-              <p>Passed with 82 percent. Domains: Web App Pentesting (100 percent), Host and Network Pentesting (90 percent), Host and Network Auditing (80 percent), Assessment Methodologies (72 percent). Tools: Nmap, Metasploit, Burp Suite, Linux.</p>
-            </li>
-            <li class="card cert"><h4>AIG Shields Up Cybersecurity Job Simulation</h4><p class="meta mono">AIG &middot; Sep 2026</p></li>
-            <li class="card cert"><h4>Mastercard Cybersecurity Job Simulation</h4><p class="meta mono">Mastercard &middot; Sep 2026</p></li>
-            <li class="card cert"><h4>Deloitte Cyber Job Simulation</h4><p class="meta mono">Deloitte &middot; Sep 2026</p></li>
-            <li class="card cert"><h4>EY Technology Risk Virtual Job Simulation</h4><p class="meta mono">EY &middot; Sep 2026</p></li>
-            <li class="card cert"><h4>Cisco: Certified Ethical Hacker</h4><p class="meta mono">Cisco Networking Academy &middot; Mar 2026</p></li>
-            <li class="card cert"><h4>Cyber Threat Management</h4><p class="meta mono">Cisco Networking Academy &middot; Feb 2026</p></li>
-            <li class="card cert"><h4>Network Defense</h4><p class="meta mono">Cisco Networking Academy &middot; Feb 2026</p></li>
-            <li class="card cert"><h4>Endpoint Security</h4><p class="meta mono">Cisco Networking Academy &middot; Jan 2026</p></li>
-            <li class="card cert"><h4>Introduction to Cybersecurity</h4><p class="meta mono">Cisco Networking Academy &middot; Jan 2026</p></li>
-          </ul>
-        </div>
-
-        <div class="cert-group" data-cat="networking">
-          <h3>Networking</h3>
-          <ul class="cert-list">
-            <li class="card cert"><h4>CCNA: Switching, Routing, and Wireless Essentials</h4><p class="meta mono">Cisco Networking Academy &middot; May 2026</p></li>
-            <li class="card cert"><h4>Networking Devices and Initial Configuration</h4><p class="meta mono">Cisco Networking Academy &middot; Jan 2026</p></li>
-            <li class="card cert"><h4>Networking Basics</h4><p class="meta mono">Cisco Networking Academy &middot; Jan 2026</p></li>
-            <li class="card cert"><h4>CCNA: Introduction to Networks</h4><p class="meta mono">Cisco Networking Academy &middot; Sep 2025</p></li>
-          </ul>
-        </div>
-
-        <div class="cert-group" data-cat="professional">
-          <h3>Professional Skills</h3>
-          <ul class="cert-list">
-            <li class="card cert"><h4>McKinsey Forward Program</h4><p class="meta mono">McKinsey and Company &middot; Jun 2026</p></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- BLOG -->
-    <section id="blog" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Blog</h2>
-        <ul class="blog-list">
-          <li class="card post">
-            <p class="meta mono"><time datetime="2026-04-04">April 4, 2026</time></p>
-            <h3><!-- TODO: replace "#" with the real post URL --><a href="#">Pivoting with Metasploit: A Beginner's Guide to Network Pivoting</a></h3>
-            <p>For pivoting to work, the compromised host must be connected to two or more networks. The compromised machine acts as a bridge between you and your target.</p>
-          </li>
-          <li class="card post">
-            <p class="meta mono"><time datetime="2026-03-15">March 15, 2026</time></p>
-            <h3><!-- TODO: replace "#" with the real post URL --><a href="#">Mastering Git: What I Learned (Part 1)</a></h3>
-            <p>An introductory guide outlining Git as an essential version control system for tracking project history and enabling collaboration. Covers configuring user details, managing file states through staging, and creating snapshots with commit messages.</p>
-          </li>
-          <li class="card post">
-            <p class="meta mono"><time datetime="2026-03-12">March 12, 2026</time></p>
-            <h3><!-- TODO: replace "#" with the real post URL --><a href="#">Reverse Shells vs. Bind Shells</a></h3>
-            <p>Explains the fundamental differences between bind and reverse shells in cybersecurity, using Netcat as the primary example. Bind shells require the attacker to connect to a listening port on the victim; reverse shells force the victim to initiate the connection to the attacker. Reverse shells are preferred for bypassing modern firewall controls.</p>
-          </li>
-        </ul>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experience" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Experience</h2>
-        <ol class="timeline">
-          <li>
-            <h3>Student Researcher <span class="at">— University Cybersecurity Lab</span></h3>
-            <p class="meta mono">Sep 2025 to Present</p>
-            <p>Hands-on security research and network analysis in a university lab environment.</p>
-          </li>
-          <li>
-            <h3>Collaborative Developer <span class="at">— SecureChatApp</span></h3>
-            <p class="meta mono">Oct 2025 to Present</p>
-            <p>Building an end-to-end encrypted messaging application from scratch with other developers.</p>
-          </li>
-          <li>
-            <h3>Competitor and Security Enthusiast <span class="at">— CTF Team</span></h3>
-            <p class="meta mono">Jan 2025 to Present</p>
-            <p>Participate in Capture The Flag competitions and virtual labs to practice real-world security skills.</p>
-          </li>
-          <li>
-            <h3>Self-Directed Learner <span class="at">— Home Lab</span></h3>
-            <p class="meta mono">Jun 2024 to Present</p>
-            <p>Created a personal lab environment to practice networking and security concepts.</p>
-          </li>
-          <li>
-            <h3>Student <span class="at">— Cisco Networking Academy</span></h3>
-            <p class="meta mono">Sep 2025 to Present</p>
-            <p>Completed multiple Cisco certification courses as part of degree program.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- VOLUNTEERING -->
-    <section id="volunteering" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Volunteering</h2>
-        <article class="card">
-          <h3>Volunteer Teacher <span class="at">— Kagwampungu Primary School</span></h3>
-          <p class="meta mono">Jan 2026 to Present</p>
-          <p>Under the SBL program I provided my skills and organized coding workshops for underprivileged youth, teaching basic programming and cybersecurity awareness. I used tools such as Scratch and Python to make learning fun and accessible. I mentored two students and guided them to complete a project submitted to the Kenya Science and Engineering Fair.</p>
-        </article>
+    <section id="journey" class="block block-tint">
+      <div class="wrap journey-grid">
+        <div>
+          <h2 class="block-title">Where I've been learning</h2>
+          <ol class="timeline">
+            <li><p class="when">Jan 2026 to now</p><h3>Volunteer teacher, Kagwampungu Primary School</h3><p>Running coding workshops with Scratch and Python and teaching online safety. I mentored two pupils whose project went to the Kenya Science and Engineering Fair.</p></li>
+            <li><p class="when">Oct 2025 to now</p><h3>Developer, SecureChatApp</h3><p>Building an end-to-end encrypted messenger with a small team.</p></li>
+            <li><p class="when">Sep 2025 to now</p><h3>Student researcher, university cybersecurity lab</h3><p>Hands-on security research and network analysis.</p></li>
+            <li><p class="when">Jan 2025 to now</p><h3>CTF competitor</h3><p>Capture the Flag events and virtual labs to practise real attack techniques.</p></li>
+            <li><p class="when">Jun 2024 to now</p><h3>Home lab</h3><p>Where the projects above get built, broken and rebuilt.</p></li>
+          </ol>
+        </div>
+        <aside class="writing">
+          <h2 class="block-title">Things I've written about</h2>
+          <ul class="posts">
+            <li><time datetime="2026-04-04">4 Apr 2026</time><h3>Pivoting with Metasploit: a beginner's guide</h3><p>Using a compromised host that sits on two networks as a bridge to reach the one you can't see.</p></li>
+            <li><time datetime="2026-03-15">15 Mar 2026</time><h3>Mastering Git, part 1</h3><p>Configuring Git, staging changes and writing commits that make sense later.</p></li>
+            <li><time datetime="2026-03-12">12 Mar 2026</time><h3>Reverse shells vs bind shells</h3><p>Who connects to whom, shown with Netcat, and why reverse shells usually get past the firewall.</p></li>
+          </ul>
+        </aside>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="container">
-        <h2><span class="hash mono" aria-hidden="true">#</span> Contact</h2>
-        <div class="callout">
-          <strong>Open to internships.</strong> I am looking for entry-level cybersecurity, SOC, or penetration testing internships in Kenya and remotely.
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <h2>Need someone who'll find the hole before an attacker does?</h2>
+        <p>I'm looking for SOC and penetration testing internships in Kenya or remote. The fastest way to reach me is email.</p>
+        <div class="contact-row">
+          <a class="btn btn-light" id="email-link" href="mailto:victor.mawira@strathmore.edu">victor.mawira@strathmore.edu</a>
+          <button type="button" class="btn btn-ghost" id="copy-email" hidden>Copy email</button>
+          <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
         </div>
-        <ul class="contact-list">
-          <li>
-            <span class="contact-label mono">Email</span>
-            <a href="mailto:victor.mawira@strathmore.edu" id="email-link">victor.mawira@strathmore.edu</a>
-            <button type="button" class="btn btn-small btn-secondary" id="copy-email" hidden>Copy</button>
-            <span class="copy-status" id="copy-status" role="status" aria-live="polite"></span>
-          </li>
-          <li>
-            <span class="contact-label mono">GitHub</span>
-            <a href="https://github.com/MawiraVictor" rel="noopener">github.com/MawiraVictor</a>
-          </li>
-          <li>
-            <span class="contact-label mono">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/victor-mawira" rel="noopener">linkedin.com/in/victor-mawira</a>
-          </li>
+        <ul class="socials">
+          <li><a href="https://github.com/MawiraVictor" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/victor-mawira" rel="noopener">LinkedIn</a></li>
         </ul>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year">2026</span> Victor Mawira. Built with HTML, CSS and vanilla JavaScript.</p>
-      <p><a href="https://github.com/MawiraVictor" rel="noopener">GitHub</a> &middot; <a href="https://www.linkedin.com/in/victor-mawira" rel="noopener">LinkedIn</a></p>
+    <div class="wrap">
+      <p>&copy; <span id="year">2026</span> Victor Mawira. Handwritten HTML, CSS and JavaScript.</p>
     </div>
   </footer>
 

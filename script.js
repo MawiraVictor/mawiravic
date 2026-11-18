@@ -1,204 +1,244 @@
-/* Victor Mawira — portfolio behaviour (vanilla JS, no dependencies).
-   Everything here is progressive enhancement: the page is fully
-   readable without it. */
+/* Victor Mawira portfolio behaviour. Vanilla JS, progressive enhancement:
+   the page reads fine without it. */
 (function () {
   'use strict';
 
   var doc = document;
   var root = doc.documentElement;
-
   function $(sel, ctx) { return (ctx || doc).querySelector(sel); }
   function $$(sel, ctx) { return Array.prototype.slice.call((ctx || doc).querySelectorAll(sel)); }
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Theme toggle (persisted) ---------- */
+  /* ---------- Theme ---------- */
   var themeBtn = $('#theme-toggle');
+  var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
 
-  function currentTheme() {
-    return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  function theme() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return systemDark && systemDark.matches ? 'dark' : 'light';
   }
-
-  function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    var meta = $('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#FFFFFF' : '#0B0F14');
-    if (themeBtn) {
-      themeBtn.setAttribute('aria-pressed', String(theme === 'light'));
-      var label = $('.theme-label', themeBtn);
-      if (label) label.textContent = theme === 'light' ? 'Light' : 'Dark';
-    }
+  function syncThemeButton() {
+    if (!themeBtn) return;
+    var next = theme() === 'dark' ? 'light' : 'dark';
+    themeBtn.setAttribute('aria-label', 'Switch to ' + next + ' theme');
+    root.setAttribute('data-theme', theme());
   }
-
-  applyTheme(currentTheme());
-
+  syncThemeButton();
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
-      var next = currentTheme() === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-      try { localStorage.setItem('theme', next); } catch (e) { /* storage blocked */ }
+      var next = theme() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      syncThemeButton();
     });
   }
 
-  /* ---------- Footer year ---------- */
+  /* ---------- Header border on scroll ---------- */
+  var header = $('.site-header');
+  function onScroll() { if (header) header.classList.toggle('is-scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
   var yearEl = $('#year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------- Project filtering (category buttons + tech tags) ---------- */
-  var projectList = $('#project-list');
-  var projects = projectList ? $$('.project', projectList) : [];
-  var projectFilters = $('[data-filter-target="projects"]');
+  /* ---------- The lab: walk an attack path ---------- */
+  var runBtn = $('#lab-run');
+  var cmdEl = $('#lab-cmd');
+  var textEl = $('#lab-text');
+  var progress = $$('.lab-progress li');
+
+  var steps = [
+    {
+      cmd: '$ nmap -sV -p- 172.16.5.0/24',
+      text: 'Recon. A full port scan through the router finds two hosts. The web server is running an outdated app on port 80.',
+      found: ['web', 'mail'], hot: ['l-kali-fw', 'l-fw-web', 'l-fw-mail']
+    },
+    {
+      cmd: 'msf6 > use exploit/multi/http/... ; set RHOSTS 172.16.5.10 ; run',
+      text: 'Exploit. A vulnerable upload form gives a Meterpreter shell on the web server. First foothold.',
+      owned: ['web'], hot: ['l-kali-fw', 'l-fw-web']
+    },
+    {
+      cmd: 'meterpreter > run autoroute -s 10.0.2.0/24',
+      text: 'Pivot. The web server has a second network card. Routing through it reveals an internal subnet the attacker could never reach directly.',
+      found: ['ldap', 'db'], hot: ['l-web-ldap', 'l-web-db']
+    },
+    {
+      cmd: 'www-data@db:~$ sudo -l   # (root) NOPASSWD: /usr/bin/find',
+      text: 'Escalate. Reused credentials open the database host, and a sudo misconfiguration turns www-data into root. Game over, and time to write the report.',
+      owned: ['db'], root: ['db'], hot: ['l-web-db']
+    }
+  ];
+  var initial = { cmd: cmdEl ? cmdEl.textContent : '', text: textEl ? textEl.innerHTML : '' };
+  var timer = null;
+  var stepIndex = -1;
+
+  function node(name) { return $('.node[data-node="' + name + '"]'); }
+  function clearLab() {
+    $$('.node').forEach(function (n) { n.classList.remove('is-found', 'is-owned', 'is-root'); });
+    $$('.links path').forEach(function (p) { p.classList.remove('is-hot'); });
+    progress.forEach(function (li) { li.classList.remove('is-done'); });
+  }
+  function applyStep(i) {
+    var s = steps[i];
+    $$('.links path').forEach(function (p) { p.classList.remove('is-hot'); });
+    (s.hot || []).forEach(function (id) { var p = doc.getElementById(id); if (p) p.classList.add('is-hot'); });
+    (s.found || []).forEach(function (n) { var el = node(n); if (el) el.classList.add('is-found'); });
+    (s.owned || []).forEach(function (n) { var el = node(n); if (el) el.classList.add('is-owned'); });
+    (s.root || []).forEach(function (n) { var el = node(n); if (el) el.classList.add('is-root'); });
+    if (progress[i]) progress[i].classList.add('is-done');
+    cmdEl.textContent = s.cmd;
+    textEl.textContent = s.text;
+  }
+  function finish() {
+    runBtn.disabled = false;
+    runBtn.textContent = 'Reset the lab';
+    stepIndex = steps.length;
+  }
+  function run() {
+    clearTimeout(timer);
+    if (stepIndex >= steps.length) {          // reset
+      clearLab();
+      cmdEl.textContent = initial.cmd;
+      textEl.innerHTML = initial.text;
+      runBtn.textContent = 'Run the attack';
+      stepIndex = -1;
+      return;
+    }
+    clearLab();
+    runBtn.disabled = true;
+    stepIndex = 0;
+    (function next() {
+      applyStep(stepIndex);
+      stepIndex++;
+      if (stepIndex < steps.length) timer = setTimeout(next, reduceMotion ? 2600 : 2900);
+      else timer = setTimeout(finish, 600);
+    })();
+  }
+  if (runBtn && cmdEl && textEl) runBtn.addEventListener('click', run);
+
+  /* ---------- eJPT bars fill when they scroll into view ---------- */
+  var bars = $('.bars');
+  if (bars) {
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      var barObs = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) { bars.classList.add('is-in'); barObs.disconnect(); }
+      }, { threshold: 0.4 });
+      barObs.observe(bars);
+    } else {
+      bars.classList.add('is-in');
+    }
+  }
+
+  /* ---------- Project filters (category buttons + tool tags) ---------- */
+  var list = $('#project-list');
+  var projects = list ? $$('.project', list) : [];
+  var filters = $('#project-filters');
   var tagStatus = $('#tag-status');
-  var tagStatusName = $('#tag-status-name');
-  var tagClear = $('#tag-clear');
-  var emptyMsg = $('#projects-empty');
+  var tagName = $('#tag-status-name');
+  var empty = $('#projects-empty');
   var live = $('#projects-live');
+  var state = { cat: 'all', tag: '', tagLabel: '' };
 
-  var state = { cat: 'all', tag: '' };
+  function words(s) { return (s || '').split(/\s+/).filter(Boolean); }
+  var usedTags = {};
+  projects.forEach(function (p) { words(p.getAttribute('data-tags')).forEach(function (t) { usedTags[t] = true; }); });
 
-  function words(str) { return (str || '').split(/\s+/).filter(Boolean); }
-
-  function renderProjects() {
+  function render() {
     var shown = 0;
-    projects.forEach(function (card) {
-      var catOk = state.cat === 'all' || words(card.getAttribute('data-cat')).indexOf(state.cat) !== -1;
-      var tagOk = !state.tag || words(card.getAttribute('data-tags')).indexOf(state.tag) !== -1;
-      var visible = catOk && tagOk;
-      card.hidden = !visible;
-      if (visible) shown++;
+    projects.forEach(function (p) {
+      var ok = (state.cat === 'all' || words(p.getAttribute('data-cat')).indexOf(state.cat) !== -1) &&
+               (!state.tag || words(p.getAttribute('data-tags')).indexOf(state.tag) !== -1);
+      p.hidden = !ok;
+      if (ok) shown++;
     });
-
-    if (projectFilters) {
-      $$('.filter-btn', projectFilters).forEach(function (btn) {
-        var on = !state.tag && btn.getAttribute('data-filter') === state.cat;
-        btn.classList.toggle('is-active', on);
-        btn.setAttribute('aria-pressed', String(on));
-      });
-    }
-
-    $$('[data-tag]').forEach(function (el) {
-      el.classList.toggle('is-active', !!state.tag && el.getAttribute('data-tag') === state.tag);
-    });
-
-    if (tagStatus) {
-      tagStatus.hidden = !state.tag;
-      if (tagStatusName) tagStatusName.textContent = state.tag;
-    }
-    if (emptyMsg) emptyMsg.hidden = shown !== 0;
-    if (live) live.textContent = shown + (shown === 1 ? ' project shown' : ' projects shown');
-  }
-
-  if (projectFilters) {
-    projectFilters.addEventListener('click', function (e) {
-      var btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      state.cat = btn.getAttribute('data-filter');
-      state.tag = '';
-      renderProjects();
-    });
-  }
-
-  function selectTag(tag) {
-    state.tag = state.tag === tag ? '' : tag;
-    state.cat = 'all';
-    renderProjects();
-    if (state.tag) {
-      var target = $('#projects');
-      if (target) target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
-    }
-  }
-
-  function prefersReducedMotion() {
-    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  }
-
-  // Upgrade chips and card tags into keyboard-accessible buttons
-  $$('[data-tag]').forEach(function (el) {
-    el.setAttribute('role', 'button');
-    el.setAttribute('tabindex', '0');
-    el.setAttribute('title', 'Filter projects by ' + el.textContent.trim());
-    el.addEventListener('click', function () { selectTag(el.getAttribute('data-tag')); });
-    el.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        selectTag(el.getAttribute('data-tag'));
-      }
-    });
-  });
-
-  if (tagClear) {
-    tagClear.addEventListener('click', function () {
-      state.tag = '';
-      renderProjects();
-    });
-  }
-
-  /* ---------- Certification filtering ---------- */
-  var certFilters = $('[data-filter-target="certs"]');
-  var certGroups = $$('.cert-group');
-
-  if (certFilters) {
-    certFilters.addEventListener('click', function (e) {
-      var btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      var f = btn.getAttribute('data-filter');
-      $$('.filter-btn', certFilters).forEach(function (b) {
-        var on = b === btn;
+    if (filters) {
+      $$('.chip-btn', filters).forEach(function (b) {
+        var on = !state.tag && b.getAttribute('data-filter') === state.cat;
         b.classList.toggle('is-active', on);
         b.setAttribute('aria-pressed', String(on));
       });
-      certGroups.forEach(function (g) {
-        g.hidden = !(f === 'all' || g.getAttribute('data-cat') === f);
-      });
+    }
+    $$('[data-tag][role="button"]').forEach(function (el) {
+      var on = !!state.tag && el.getAttribute('data-tag') === state.tag;
+      el.classList.toggle('is-active', on);
+      el.setAttribute('aria-pressed', String(on));
+    });
+    if (tagStatus) { tagStatus.hidden = !state.tag; if (tagName) tagName.textContent = state.tagLabel; }
+    if (empty) empty.hidden = shown !== 0;
+    if (live) live.textContent = shown + (shown === 1 ? ' project shown' : ' projects shown');
+  }
+
+  function reset() { state.cat = 'all'; state.tag = ''; render(); }
+
+  if (filters) {
+    filters.addEventListener('click', function (e) {
+      var b = e.target.closest('.chip-btn');
+      if (!b) return;
+      state.cat = b.getAttribute('data-filter');
+      state.tag = '';
+      render();
     });
   }
 
-  /* ---------- Copy email to clipboard ---------- */
+  function selectTag(el) {
+    var tag = el.getAttribute('data-tag');
+    var fromSkills = !!el.closest('#skills');
+    state.tag = state.tag === tag ? '' : tag;
+    state.tagLabel = el.textContent.trim();
+    state.cat = 'all';
+    render();
+    if (state.tag && fromSkills) {
+      var target = $('#work');
+      if (target) target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+  }
+
+  // Only tags that match at least one project become buttons.
+  $$('[data-tag]').forEach(function (el) {
+    if (!usedTags[el.getAttribute('data-tag')]) return;
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-pressed', 'false');
+    el.setAttribute('title', 'Show projects that use ' + el.textContent.trim());
+    el.addEventListener('click', function () { selectTag(el); });
+    el.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectTag(el); }
+    });
+  });
+  var clearBtn = $('#tag-clear');
+  if (clearBtn) clearBtn.addEventListener('click', reset);
+  $$('[data-reset]').forEach(function (b) { b.addEventListener('click', reset); });
+
+  /* ---------- Copy email ---------- */
   var copyBtn = $('#copy-email');
   var emailLink = $('#email-link');
   var copyStatus = $('#copy-status');
-  var statusTimer;
-
+  var flashTimer;
   function flash(msg) {
     if (!copyStatus) return;
     copyStatus.textContent = msg;
-    clearTimeout(statusTimer);
-    statusTimer = setTimeout(function () { copyStatus.textContent = ''; }, 2500);
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(function () { copyStatus.textContent = ''; }, 2500);
   }
-
-  function fallbackCopy(text) {
-    var ta = doc.createElement('textarea');
-    ta.value = text;
-    ta.setAttribute('readonly', '');
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    doc.body.appendChild(ta);
-    ta.select();
-    var ok = false;
-    try { ok = doc.execCommand('copy'); } catch (e) { ok = false; }
-    doc.body.removeChild(ta);
-    return ok;
-  }
-
-  if (copyBtn && emailLink) {
-    copyBtn.hidden = false; // only shown when JS is available
+  if (copyBtn && emailLink && navigator.clipboard) {
+    copyBtn.hidden = false;
     copyBtn.addEventListener('click', function () {
-      var text = emailLink.textContent.trim();
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(
-          function () { flash('Copied!'); },
-          function () { flash(fallbackCopy(text) ? 'Copied!' : 'Copy failed'); }
-        );
-      } else {
-        flash(fallbackCopy(text) ? 'Copied!' : 'Copy failed');
-      }
+      navigator.clipboard.writeText(emailLink.textContent.trim()).then(
+        function () { flash('Email copied'); },
+        function () { flash('Copy failed. Select the address instead.'); }
+      );
     });
   }
 
-  /* ---------- Highlight current section in nav ---------- */
-  var navLinks = $$('.primary-nav a');
+  /* ---------- Current section in nav ---------- */
+  var navLinks = $$('.nav a');
   if ('IntersectionObserver' in window && navLinks.length) {
     var map = {};
     navLinks.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-    var observer = new IntersectionObserver(function (entries) {
+    var navObs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         navLinks.forEach(function (a) { a.classList.remove('is-current'); a.removeAttribute('aria-current'); });
@@ -206,24 +246,8 @@
         if (link) { link.classList.add('is-current'); link.setAttribute('aria-current', 'true'); }
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
-    Object.keys(map).forEach(function (id) {
-      var sec = doc.getElementById(id);
-      if (sec) observer.observe(sec);
-    });
+    Object.keys(map).forEach(function (id) { var s = doc.getElementById(id); if (s) navObs.observe(s); });
   }
 
-  /* ---------- Smooth scroll: CSS handles it (scroll-behavior), disabled
-     under prefers-reduced-motion. Move focus to the target for keyboard users. */
-  $$('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      var id = a.getAttribute('href').slice(1);
-      if (!id) return;                // "#" placeholder links (blog TODOs)
-      var target = doc.getElementById(id);
-      if (!target) return;
-      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-      setTimeout(function () { target.focus({ preventScroll: true }); }, 0);
-    });
-  });
-
-  renderProjects();
+  render();
 })();

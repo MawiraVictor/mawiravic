@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mawiravictor.github.io/mawiravic.io/sitemap.xml
+Sitemap: https://mawiravic.pages.dev/sitemap.xml
